@@ -18,8 +18,8 @@ class ActionLoggerServiceProvider extends ServiceProvider
         $this->app['router']->aliasMiddleware('actionLogger', ActionLogger::class);
 
         $this->publishes([
-            __DIR__.'/../database/migrations' => resource_path('database/migrations'),
-        ], 'actionLogger-migrations');
+            __DIR__.'/../database/migrations' => database_path('migrations'),
+        ], 'actionLogger-migration');
     }
 
     /**
