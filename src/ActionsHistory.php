@@ -5,25 +5,6 @@ namespace LaravelEnso\ActionLogger;
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Date\Date;
 
-/**
- * App\ActionsHistory.
- *
- * @property int $id
- * @property int $user_id
- * @property string $route
- * @property string $action
- * @property \Carbon\Carbon $created_at
- * @property-read \App\User $user
- * @property-read mixed $created_date
- * @property-read mixed $created_time
- *
- * @method static \Illuminate\Database\Query\Builder|\App\ActionsHistory whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ActionsHistory whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ActionsHistory whereRoute($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ActionsHistory whereAction($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ActionsHistory whereCreatedAt($value)
- * @mixin \Eloquent
- */
 class ActionsHistory extends Model
 {
     protected $table = 'actions_history';
