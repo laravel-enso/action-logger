@@ -3,7 +3,7 @@
 namespace LaravelEnso\ActionLogger\App\Http\Middleware;
 
 use Closure;
-use LaravelEnso\ActionLogger\App\Models\ActionsHistory;
+use LaravelEnso\ActionLogger\App\Models\ActionHistory;
 
 class ActionLogger
 {
@@ -17,7 +17,7 @@ class ActionLogger
      */
     public function handle($request, Closure $next)
     {
-        $history = new ActionsHistory([
+        $history = new ActionHistory([
             'user_id' => $request->user()->id,
             'route'   => $request->url(),
             'action'  => $request->method(),
