@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\ActionLogger;
+namespace LaravelEnso\ActionLogger\App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Date\Date;
 
 class ActionsHistory extends Model
 {
@@ -13,16 +13,16 @@ class ActionsHistory extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('LaravelEnso\Core\App\Models\User');
     }
 
     public function getCreatedDateAttribute()
     {
-        return Date::parse($this->created_at)->format('d-m-Y');
+        return Carbon::parse($this->created_at)->format('d-m-Y');
     }
 
     public function getCreatedTimeAttribute()
     {
-        return Date::parse($this->created_at)->format('H:i:s');
+        return Carbon::parse($this->created_at)->format('H:i:s');
     }
 }

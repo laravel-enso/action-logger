@@ -3,7 +3,7 @@
 namespace LaravelEnso\ActionLogger;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\ActionLogger\Http\Middleware\ActionLogger;
+use LaravelEnso\ActionLogger\App\Http\Middleware\ActionLogger;
 
 class ActionLoggerServiceProvider extends ServiceProvider
 {
@@ -14,12 +14,13 @@ class ActionLoggerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        $this->app['router']->aliasMiddleware('actionLogger', ActionLogger::class);
-
         $this->publishes([
-            __DIR__.'/../database/migrations' => database_path('migrations'),
+            __DIR__.'/database/migrations' => database_path('migrations'),
         ], 'actionLogger-migration');
+
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        $this->app['router']->aliasMiddleware('actionLogger', ActionLogger::class);
     }
 
     /**
