@@ -1,6 +1,6 @@
 {
     "name": "laravel-enso/actionlogger",
-    "description": "Middleware for logging user's actions",
+    "description": "Middleware for logging user's accesed routes",
     "type": "middleware",
     "license": "MIT",
     "authors": [
