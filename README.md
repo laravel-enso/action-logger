@@ -9,15 +9,17 @@ Middleware for logging user's actions.
 It creates the "actionLogger" middleware, the action_histories table and the ActionHistory model.
 It will log all the acceses for the routes under 'actionLogger' middleware.
 
-### Install
+### Installation
 
-1. Run the migration. The migration assumes that you have an users table. If you use a different table you can publish the migration with
+1. Add `'LaravelEnso\ActionLogger\ActionLoggerServiceProvider::class'` to your providers list in config/app.php.
+
+2. Run the migration. The migration assumes that you have an users table. If you use a different table you can publish the migration with
 
 `php artisan vendor:publish --tag=logger-migration`
 
 and later edit it.
 
-2. Add a relationship in the `User.php` model like this:
+3. Add a relationship in the `User.php` model like this:
 
 ```php
     public function action_histories()
@@ -26,7 +28,7 @@ and later edit it.
     }
 ```
 
-3. Add in the `$routeMiddleware` array from App\Http\Kernel.php the "actionLogger" middleware.
+4. Add in the `$routeMiddleware` array from App\Http\Kernel.php the "actionLogger" middleware.
 
 ```
 	protected $routeMiddleware = [
@@ -40,4 +42,8 @@ and later edit it.
 
 ### Note
 
-the laravel-enso/core package comes with this middleware included.
+The laravel-enso/core package comes with this middleware included.
+
+### Contributions
+
+are welcome
