@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\ActionLogger\App\Models;
+namespace LaravelEnso\ActionLogger\app\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ class ActionHistory extends Model
 
     public function user()
     {
-        return $this->belongsTo('LaravelEnso\Core\App\Models\User');
+        return $this->belongsTo('LaravelEnso\Core\app\Models\User');
     }
 
     public function getCreatedDateAttribute()

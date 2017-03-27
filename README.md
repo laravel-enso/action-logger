@@ -24,7 +24,7 @@ and later edit it.
 ```php
     public function action_histories()
     {
-        return $this->hasMany('LaravelEnso\ActionLogger\App\Models\ActionHistory');
+        return $this->hasMany('LaravelEnso\ActionLogger\app\Models\ActionHistory');
     }
 ```
 
@@ -35,7 +35,7 @@ and later edit it.
 
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         ...
-		'actionLogger' => \LaravelEnso\ActionLogger\App\Http\Middleware\ActionLogger::class,
+		'actionLogger' => \LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger::class,
 		...
 	]
 ```

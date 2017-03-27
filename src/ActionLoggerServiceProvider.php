@@ -3,7 +3,7 @@
 namespace LaravelEnso\ActionLogger;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\ActionLogger\App\Http\Middleware\ActionLogger;
+use LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger;
 
 class ActionLoggerServiceProvider extends ServiceProvider
 {
