@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActionHistory extends Model
 {
-    protected $fillable = ['user_id', 'route', 'action'];
+    protected $fillable = ['user_id', 'url', 'route', 'action'];
 
     public function user()
     {

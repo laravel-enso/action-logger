@@ -19,7 +19,8 @@ class ActionLogger
     {
         $history = new ActionHistory([
             'user_id' => $request->user()->id,
-            'route'   => $request->url(),
+            'url'     => $request->url(),
+            'route'   => $request->route()->getName(),
             'action'  => $request->method(),
         ]);
 

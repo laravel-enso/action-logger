@@ -16,7 +16,8 @@ class CreateActionHistoryTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');
-            $table->string('route');
+            $table->string('url');
+            $table->string('route')->index();
             $table->string('action');
             $table->timestamps();
         });
