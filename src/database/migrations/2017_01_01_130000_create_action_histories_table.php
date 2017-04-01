@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateActionHistoryTable extends Migration
+class CreateActionHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
