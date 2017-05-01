@@ -17,7 +17,7 @@ class ActionLogger
      */
     public function handle($request, Closure $next)
     {
-        $history = ActionHistory::create([
+        ActionHistory::create([
             'user_id' => $request->user()->id,
             'url'     => $request->url(),
             'route'   => $request->route()->getName(),
