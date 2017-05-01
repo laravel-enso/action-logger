@@ -43,7 +43,7 @@ and edit it accordingly.
 
 ### Note
 
-The laravel-enso/core package comes with this middleware included.
+The laravel-enso/core package comes with this middleware included (required in package.json).
 
 ### Contributions
 
