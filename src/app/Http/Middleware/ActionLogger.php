@@ -17,14 +17,12 @@ class ActionLogger
      */
     public function handle($request, Closure $next)
     {
-        $history = new ActionHistory([
+        $history = ActionHistory::create([
             'user_id' => $request->user()->id,
             'url'     => $request->url(),
             'route'   => $request->route()->getName(),
             'action'  => $request->method(),
         ]);
-
-        $history->save();
 
         return $next($request);
     }

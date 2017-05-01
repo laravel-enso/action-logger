@@ -11,7 +11,7 @@ class ActionHistory extends Model
 
     public function user()
     {
-        return $this->belongsTo('LaravelEnso\Core\app\Models\User');
+        return $this->belongsTo(config('auth.providers.users.model'));
     }
 
     public function getCreatedDateAttribute()

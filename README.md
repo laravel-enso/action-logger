@@ -13,11 +13,11 @@ It will log all the acceses for the routes under 'actionLogger' middleware.
 
 1. Add `'LaravelEnso\ActionLogger\ActionLoggerServiceProvider::class'` to your providers list in config/app.php.
 
-2. Run the migration. The migration assumes that you have an users table. If you use a different table you can publish the migration with
+2. Run the migration. The migration assumes that you have an users table. If you use a different table for users you can publish the migration with
 
-`php artisan vendor:publish --tag=logger-migration`
+`php artisan vendor:publish --tag=actionlogger-migration`
 
-and later edit it.
+and edit it accordingly.
 
 3. Add a relationship in the `User.php` model like this:
 
@@ -32,7 +32,6 @@ and later edit it.
 
 ```
 	protected $routeMiddleware = [
-
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         ...
 		'actionLogger' => \LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger::class,
@@ -40,10 +39,12 @@ and later edit it.
 	]
 ```
 
+5. Apply the middleware in `web.php` file on the desired routes.
+
 ### Note
 
 The laravel-enso/core package comes with this middleware included.
 
 ### Contributions
 
-are welcome
+... are welcome

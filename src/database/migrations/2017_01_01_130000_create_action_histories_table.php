@@ -14,7 +14,7 @@ class CreateActionHistoriesTable extends Migration
     {
         Schema::create('action_histories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index('user_id');
+            $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');
             $table->string('url');
             $table->string('route')->index();
