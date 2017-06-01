@@ -2,17 +2,16 @@
 
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use Tests\TestCase;
 
 class ActionLoggerTest extends TestCase
 {
-	use DatabaseMigrations;
+    use DatabaseMigrations;
 
-	private $user;
+    private $user;
     private $route;
-	private $response;
+    private $response;
 
     protected function setUp()
     {
@@ -26,26 +25,26 @@ class ActionLoggerTest extends TestCase
     /** @test */
     public function logs_action()
     {
-    	// Arrange
-    	// authenticate as first user
-		$this->be($this->user);
+        // Arrange
+        // authenticate as first user
+        $this->be($this->user);
 
-    	// Act
-    	// access the home route.
-    	$this->response = $this->get($this->route);
+        // Act
+        // access the home route.
+        $this->response = $this->get($this->route);
 
-    	// Assert
+        // Assert
         // the route was accessed
-    	// the route was logged
+        // the route was logged
         $this->response->assertStatus(200);
-		$this->assertTrue($this->latestActionLogIsCorrect());
+        $this->assertTrue($this->latestActionLogIsCorrect());
     }
 
     private function latestActionLogIsCorrect()
     {
-    	$actionLog = ActionLog::latest()->first();
+        $actionLog = ActionLog::latest()->first();
 
-    	return $actionLog->user_id == $this->user->id
-    		&& $actionLog->route == 'home';
+        return $actionLog->user_id == $this->user->id
+            && $actionLog->route == 'home';
     }
 }
