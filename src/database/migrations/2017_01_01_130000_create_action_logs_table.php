@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateActionHistoriesTable extends Migration
+class CreateActionLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,13 @@ class CreateActionHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('action_histories', function (Blueprint $table) {
+        $usersClass = config('auth.providers.users.model');
+        $usersTable = (new $usersClass())->getTable();
+
+        Schema::create('action_logs', function (Blueprint $table) use ($usersTable) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on($usersTable)->onUpdate('cascade')->onDelete('cascade');
             $table->string('url');
             $table->string('route')->index();
             $table->string('action');
@@ -30,6 +33,6 @@ class CreateActionHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('action_histories');
+        Schema::dropIfExists('action_logs');
     }
 }

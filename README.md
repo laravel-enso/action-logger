@@ -6,40 +6,36 @@
 
 Middleware for logging user's actions.
 
-It creates the "actionLogger" middleware, the action_histories table and the ActionHistory model.
-It will log all the acceses for the routes under 'actionLogger' middleware.
+It creates the "action-logger" middleware, the action_logs table and the ActionLog model.
+It will log all the acceses for the routes under 'action-logger' middleware.
 
-### Installation
+### Installation Steps
 
 1. Add `'LaravelEnso\ActionLogger\ActionLoggerServiceProvider::class'` to your providers list in config/app.php.
 
-2. Run the migration. The migration assumes that you have an users table. If you use a different table for users you can publish the migration with
-
-`php artisan vendor:publish --tag=actionlogger-migration`
-
-and edit it accordingly.
+2. Run the migration. The migration will use the table for your config.auth.model to create a foreign key.
 
 3. Add a relationship in the `User.php` model like this:
 
 ```php
-    public function action_histories()
+    public function action_logs()
     {
-        return $this->hasMany('LaravelEnso\ActionLogger\app\Models\ActionHistory');
+        return $this->hasMany('LaravelEnso\ActionLogger\app\Models\ActionLog');
     }
 ```
 
-4. Add in the `$routeMiddleware` array from App\Http\Kernel.php the "actionLogger" middleware.
+4. Add in the `$routeMiddleware` array from App\Http\Kernel.php the "action-logger" middleware.
 
 ```
 	protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         ...
-		'actionLogger' => \LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger::class,
+		'action-logger' => \LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger::class,
 		...
 	]
 ```
 
-5. Apply the middleware in `web.php` file on the desired routes.
+5. Use the middleware in `web.php` file on the desired routes.
 
 ### Note
 

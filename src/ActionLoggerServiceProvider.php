@@ -14,13 +14,8 @@ class ActionLoggerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/database/migrations' => database_path('migrations'),
-        ], 'actionlogger-migration');
-
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-
-        $this->app['router']->aliasMiddleware('actionLogger', ActionLogger::class);
+        $this->app['router']->aliasMiddleware('action-logger', ActionLogger::class);
     }
 
     /**

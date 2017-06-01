@@ -2,11 +2,13 @@
 
 namespace LaravelEnso\ActionLogger\app\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ActionHistory extends Model
+class ActionLog extends Model
 {
+    use DatabaseMigrations;
+
     protected $fillable = ['user_id', 'url', 'route', 'action'];
 
     public function user()
@@ -16,11 +18,11 @@ class ActionHistory extends Model
 
     public function getCreatedDateAttribute()
     {
-        return Carbon::parse($this->created_at)->format('d-m-Y');
+        return $this->created_at->format('d-m-Y');
     }
 
     public function getCreatedTimeAttribute()
     {
-        return Carbon::parse($this->created_at)->format('H:i:s');
+        return $this->created_at->format('H:i:s');
     }
 }
