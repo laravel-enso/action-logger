@@ -35,8 +35,8 @@ class ActionLoggerTest extends TestCase
 
         // Assert
         // the route was accessed
-        // the route was logged
         $this->response->assertStatus(200);
+        // the route was logged
         $this->assertTrue($this->latestActionLogIsCorrect());
     }
 
