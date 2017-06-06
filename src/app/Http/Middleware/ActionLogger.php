@@ -7,7 +7,7 @@ use LaravelEnso\ActionLogger\app\Models\ActionLog;
 
 class ActionLogger
 {
-    private $actionLogger;
+    private $actionLog;
 
     public function __construct()
     {
