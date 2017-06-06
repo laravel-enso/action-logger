@@ -7,17 +7,14 @@ use LaravelEnso\ActionLogger\app\Models\ActionLog;
 
 class ActionLogger
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
-     * @return mixed
-     */
+    public function __construct()
+    {
+        $this->actionLogger = new ActionLog();
+    }
+
     public function handle($request, Closure $next)
     {
-        ActionLog::create([
+        $this->actionLogger->create([
             'user_id' => $request->user()->id,
             'url'     => $request->url(),
             'route'   => $request->route()->getName(),
