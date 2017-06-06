@@ -7,14 +7,16 @@ use LaravelEnso\ActionLogger\app\Models\ActionLog;
 
 class ActionLogger
 {
+    private $actionLogger;
+
     public function __construct()
     {
-        $this->actionLogger = new ActionLog();
+        $this->actionLog = new ActionLog();
     }
 
     public function handle($request, Closure $next)
     {
-        $this->actionLogger->create([
+        $this->actionLog->create([
             'user_id' => $request->user()->id,
             'url'     => $request->url(),
             'route'   => $request->route()->getName(),
