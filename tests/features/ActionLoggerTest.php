@@ -25,18 +25,11 @@ class ActionLoggerTest extends TestCase
     /** @test */
     public function logs_action()
     {
-        // Arrange
-        // authenticate as first user
         $this->be($this->user);
 
-        // Act
-        // access the home route.
         $this->response = $this->get($this->route);
 
-        // Assert
-        // the route was accessed
         $this->response->assertStatus(200);
-        // the route was logged
         $this->assertTrue($this->latestActionLogIsCorrect());
     }
 
