@@ -9,7 +9,7 @@ class ActionLoggerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->app['router']->aliasMiddleware('action-logger', ActionLogger::class);
     }
 
