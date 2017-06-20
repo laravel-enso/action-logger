@@ -25,15 +25,13 @@ class ActionLoggerTest extends TestCase
     /** @test */
     public function logs_action()
     {
-        $this->be($this->user);
-
+        $this->actingAs($this->user);
         $this->response = $this->get($this->route);
-
         $this->response->assertStatus(200);
-        $this->assertTrue($this->latestActionLogIsCorrect());
+        $this->assertTrue($this->actionWasLogged());
     }
 
-    private function latestActionLogIsCorrect()
+    private function actionWasLogged()
     {
         $actionLog = ActionLog::latest()->first();
 
