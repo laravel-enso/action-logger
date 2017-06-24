@@ -7,13 +7,10 @@ class CreateActionLogsTable extends Migration
 {
     public function up()
     {
-        $usersClass = config('auth.providers.users.model');
-        $usersTable = (new $usersClass())->getTable();
-
-        Schema::create('action_logs', function (Blueprint $table) use ($usersTable) {
+        Schema::create('action_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on($usersTable)->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('url');
             $table->string('route')->index();
             $table->string('action');

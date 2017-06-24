@@ -13,6 +13,6 @@ class ActionLog extends Model
 
     public function user()
     {
-        return $this->belongsTo(config('auth.providers.users.model'));
+        return $this->belongsTo('LaravelEnso\Core\app\Models\User');
     }
 }
