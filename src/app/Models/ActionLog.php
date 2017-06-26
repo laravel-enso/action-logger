@@ -21,7 +21,7 @@ class ActionLog extends Model
 
     public function getCreatedAtAttribute($value)
     {
-    	Date::setLocale(request()->user()->language);
+        Date::setLocale(request()->user()->language);
 
         return Date::parse($value)->diffForHumans();
     }
