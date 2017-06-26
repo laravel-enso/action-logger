@@ -4,42 +4,43 @@
 [![Total Downloads](https://poser.pugx.org/laravel-enso/actionlogger/downloads)](https://packagist.org/packages/laravel-enso/actionlogger)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/actionlogger/version)](https://packagist.org/packages/laravel-enso/actionlogger)
 
-Middleware for logging user's actions.
+Package used for logging user's actions.
 
-It creates the "action-logger" middleware, the action_logs table and the ActionLog model.
-It will log all the acceses for the routes under 'action-logger' middleware.
+It creates the `action-logger` middleware, the `action_logs` table and the `ActionLog` model.
+It will log all access routes covered by the `action-logger` middleware.
 
 ### Installation Steps
 
-1. Add `'LaravelEnso\ActionLogger\ActionLoggerServiceProvider::class'` to your providers list in config/app.php.
+1. Add `LaravelEnso\ActionLogger\ActionLoggerServiceProvider::class` to your providers list in config/app.php.
 
-2. Run the migration. The migration will use the table for your config.auth.model to create a foreign key.
+2. Run the migration. The migration will use the table for the model specified in the `config/auth.model` key within 
+your configuration file to create a foreign key.
 
 3. Add a relationship in the `User.php` model like this:
 
-```php
-    public function action_logs()
-    {
-        return $this->hasMany('LaravelEnso\ActionLogger\app\Models\ActionLog');
-    }
-```
+    ```php
+        public function action_logs()
+        {
+            return $this->hasMany('LaravelEnso\ActionLogger\app\Models\ActionLog');
+        }
+    ```
 
-4. Add in the `$routeMiddleware` array from App\Http\Kernel.php the "action-logger" middleware.
+4. Add in the `$routeMiddleware` array from `App\Http\Kernel.php` the `action-logger` middleware.
 
-```
-	protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        ...
-		'action-logger' => \LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger::class,
-		...
-	]
-```
+    ```
+        protected $routeMiddleware = [
+            'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+            ...
+            'action-logger' => \LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger::class,
+            ...
+        ]
+    ```
 
 5. Use the middleware in `web.php` file on the desired routes.
 
 ### Note
 
-The laravel-enso/core package comes with this middleware included (required in package.json).
+The `laravel-enso/core` package comes with this package included as a dependency (required in package.json).
 
 ### Contributions
 
