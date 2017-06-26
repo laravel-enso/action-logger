@@ -13,17 +13,9 @@ It will log all access routes covered by the `action-logger` middleware.
 
 1. Add `LaravelEnso\ActionLogger\ActionLoggerServiceProvider::class` to your providers list in config/app.php.
 
-2. Run the migration. The migration will use the table for the model specified in the `config/auth.model` key within 
-your configuration file to create a foreign key.
+2. Run the migration. The migration will use the users table to create a foreign key.
 
-3. Add a relationship in the `User.php` model like this:
-
-    ```php
-        public function action_logs()
-        {
-            return $this->hasMany('LaravelEnso\ActionLogger\app\Models\ActionLog');
-        }
-    ```
+3. Add `use ActionLogger` trait in your User model. Don't forget to import the class.
 
 4. Add in the `$routeMiddleware` array from `App\Http\Kernel.php` the `action-logger` middleware.
 
@@ -40,7 +32,7 @@ your configuration file to create a foreign key.
 
 ### Note
 
-The `laravel-enso/core` package comes with this package included as a dependency (required in package.json).
+The `laravel-enso/core` package comes with this package included.
 
 ### Contributions
 
