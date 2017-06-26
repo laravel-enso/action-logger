@@ -3,16 +3,26 @@
 namespace LaravelEnso\ActionLogger\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\Helpers\Traits\FormattedTimestamps;
+use Jenssegers\Date\Date;
 
 class ActionLog extends Model
 {
-    use FormattedTimestamps;
-
     protected $fillable = ['user_id', 'url', 'route', 'action'];
 
     public function user()
     {
         return $this->belongsTo('LaravelEnso\Core\app\Models\User');
+    }
+
+    public function permission()
+    {
+        return $this->hasOne('LaravelEnso\PermissionManager\app\Models\Permission', 'name', 'route');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+    	Date::setLocale(request()->user()->language);
+
+        return Date::parse($value)->diffForHumans();
     }
 }
