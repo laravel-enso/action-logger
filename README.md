@@ -4,36 +4,17 @@
 [![Total Downloads](https://poser.pugx.org/laravel-enso/actionlogger/downloads)](https://packagist.org/packages/laravel-enso/actionlogger)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/actionlogger/version)](https://packagist.org/packages/laravel-enso/actionlogger)
 
-Package used for logging user's actions.
+Users' actions logger dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
+
+### Details
 
 It creates the `action-logger` middleware, the `action_logs` table and the `ActionLog` model.
 It will log all access routes covered by the `action-logger` middleware.
 
-### Installation Steps
+### Notes
 
-1. Add `LaravelEnso\ActionLogger\ActionLoggerServiceProvider::class` to your providers list in config/app.php.
-
-2. Run the migration. The migration will use the users table to create a foreign key.
-
-3. Add `use ActionLogger` trait in your User model. Don't forget to import the class.
-
-4. Add in the `$routeMiddleware` array from `App\Http\Kernel.php` the `action-logger` middleware.
-
-    ```
-        protected $routeMiddleware = [
-            'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-            ...
-            'action-logger' => \LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger::class,
-            ...
-        ]
-    ```
-
-5. Use the middleware in `web.php` file on the desired routes.
-
-### Note
-
-The `laravel-enso/core` package comes with this package included.
+The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
 
 ### Contributions
 
-... are welcome
+are welcome
