@@ -1,12 +1,21 @@
 {
     "name": "laravel-enso/actionlogger",
-    "description": "Users' actions logger dependency for Laravel Enso",
+    "description": "User actions logger dependency for Laravel Enso",
+    "keywords": [
+        "laravel-enso",
+        "actionlogger",
+        "action-logger",
+        "logging"
+    ],
+    "homepage": "https://github.com/laravel-enso/ActionLogger",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mishu",
-            "email": "mishu@xtelecom.ro"
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -17,6 +26,14 @@
     "autoload": {
         "psr-4": {
             "LaravelEnso\\ActionLogger\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\ActionLogger\\ActionLoggerServiceProvider"
+            ],
+            "aliases": {}
         }
     }
 }
