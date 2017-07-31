@@ -10,14 +10,18 @@
 
 User actions logger dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
-### Details
+### Features
 
-It creates the `action-logger` middleware, the `action_logs` table and the `ActionLog` model.
-It will log all access routes covered by the `action-logger` middleware.
+- creates the `action-logger` middleware, the `action_logs` table and the `ActionLog` model
+- will log all access routes covered by the `action-logger` middleware
+- comes with the `ActionLogger` trait that defines the relationship to the `ActionLog` model
+- each entry will record `user_id`, `url`, `route` name, http `action` verb and timestamps
 
 ### Notes
 
 The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
+
+The list of actions for an user are available in each user's profile page.
 
 <!--h-->
 ### Contributions
