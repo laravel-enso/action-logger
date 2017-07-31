@@ -8,7 +8,7 @@
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/actionlogger/version)](https://packagist.org/packages/laravel-enso/actionlogger)
 <!--/h-->
 
-User actions logger dependency for [Laravel Enso](https://github.com/laravel-enso/Enso).
+User actions logger dependency for Laravel.
 
 ### Features
 
@@ -22,8 +22,6 @@ User actions logger dependency for [Laravel Enso](https://github.com/laravel-ens
 The list of actions for an user are available in each user's profile page.
 
 The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
-
-This package can also be used standalone, together with Laravel.
 
 <!--h-->
 ### Contributions
