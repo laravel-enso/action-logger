@@ -19,9 +19,11 @@ User actions logger dependency for [Laravel Enso](https://github.com/laravel-ens
 
 ### Notes
 
+The list of actions for an user are available in each user's profile page.
+
 The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
 
-The list of actions for an user are available in each user's profile page.
+This package can also be used standalone, together with Laravel.
 
 <!--h-->
 ### Contributions
