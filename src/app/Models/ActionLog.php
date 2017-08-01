@@ -4,6 +4,7 @@ namespace LaravelEnso\ActionLogger\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Date\Date;
+use LaravelEnso\PermissionManager\app\Models\Permission;
 
 class ActionLog extends Model
 {
@@ -11,15 +12,15 @@ class ActionLog extends Model
 
     public function user()
     {
-        return $this->belongsTo('LaravelEnso\Core\app\Models\User');
+        return $this->belongsTo(config('auth.providers.users.model', 'user_id'));
     }
 
     public function permission()
     {
-        return $this->hasOne('LaravelEnso\PermissionManager\app\Models\Permission', 'name', 'route');
+        return $this->hasOne(Permission::class, 'name', 'route');
     }
 
-    public function getCreatedAtAttribute($value)
+    public function getSinceCreatedAttribute($value)
     {
         return Date::parse($value)->diffForHumans();
     }

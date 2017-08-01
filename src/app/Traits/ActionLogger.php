@@ -4,7 +4,7 @@ namespace LaravelEnso\ActionLogger\app\Traits;
 
 trait ActionLogger
 {
-    public function action_logs()
+    public function actionLogs()
     {
         return $this->hasMany('LaravelEnso\ActionLogger\app\Models\ActionLog');
     }
