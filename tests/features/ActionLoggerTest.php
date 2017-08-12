@@ -3,39 +3,36 @@
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
-use Tests\TestCase;
+use LaravelEnso\TestHelper\app\Classes\TestHelper;
 
-class ActionLoggerTest extends TestCase
+class ActionLoggerTest extends TestHelper
 {
     use DatabaseMigrations;
 
     private $user;
     private $route;
-    private $response;
+    private $routeName;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->user = User::first();
+        $this->user  = User::first();
         $this->route = '/';
-        $this->response = null;
+        $this->routeName = 'home';
+
+        $this->signIn($this->user);
     }
 
     /** @test */
     public function logs_action()
     {
-        $this->actingAs($this->user);
-        $this->response = $this->get($this->route);
-        $this->response->assertStatus(200);
-        $this->assertTrue($this->actionWasLogged());
-    }
+        $this->get($this->route)
+            ->assertStatus(200);
 
-    private function actionWasLogged()
-    {
         $actionLog = ActionLog::latest()->first();
 
-        return $actionLog->user_id == $this->user->id
-            && $actionLog->route == 'home';
+        $this->assertEquals($actionLog->user_id, $this->user->id);
+        $this->assertEquals('home', $actionLog->route, $this->routeName);
     }
 }
