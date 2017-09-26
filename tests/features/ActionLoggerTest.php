@@ -17,6 +17,7 @@ class ActionLoggerTest extends TestHelper
     {
         parent::setUp();
 
+        // $this->disableExceptionHandling();
         $this->user = User::first();
         $this->route = '/';
         $this->routeName = 'home';
