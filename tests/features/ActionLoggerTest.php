@@ -3,11 +3,12 @@
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
-use LaravelEnso\TestHelper\app\Classes\TestHelper;
+use LaravelEnso\TestHelper\app\Traits\SignIn;
+use Tests\TestCase;
 
-class ActionLoggerTest extends TestHelper
+class ActionLoggerTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, SignIn;
 
     private $user;
     private $route;
@@ -17,9 +18,9 @@ class ActionLoggerTest extends TestHelper
     {
         parent::setUp();
 
-        // $this->disableExceptionHandling();
-        $this->user = User::first();
-        $this->route = '/';
+        // $this->withoutExceptionHandling();
+        $this->user      = User::first();
+        $this->route     = '/';
         $this->routeName = 'home';
 
         $this->signIn($this->user);
