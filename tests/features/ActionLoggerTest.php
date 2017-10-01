@@ -18,7 +18,7 @@ class ActionLoggerTest extends TestCase
         parent::setUp();
 
         // $this->withoutExceptionHandling();
-        $this->user  = User::first();
+        $this->user = User::first();
         $this->route = 'administration.users.show';
 
         $this->signIn($this->user);
