@@ -1,27 +1,25 @@
 <?php
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\TestHelper\app\Traits\SignIn;
 use Tests\TestCase;
 
 class ActionLoggerTest extends TestCase
 {
-    use DatabaseMigrations, SignIn;
+    use RefreshDatabase, SignIn;
 
     private $user;
     private $route;
-    private $routeName;
 
     protected function setUp()
     {
         parent::setUp();
 
         // $this->withoutExceptionHandling();
-        $this->user = User::first();
-        $this->route = '/';
-        $this->routeName = 'home';
+        $this->user  = User::first();
+        $this->route = 'administration.users.show';
 
         $this->signIn($this->user);
     }
@@ -29,12 +27,12 @@ class ActionLoggerTest extends TestCase
     /** @test */
     public function logs_action()
     {
-        $this->get($this->route)
+        $this->get(route($this->route, $this->user->id, false))
             ->assertStatus(200);
 
         $actionLog = ActionLog::latest()->first();
 
         $this->assertEquals($actionLog->user_id, $this->user->id);
-        $this->assertEquals('home', $actionLog->route, $this->routeName);
+        $this->assertEquals($actionLog->route, $this->route);
     }
 }
