@@ -18,9 +18,9 @@ class ActionLogger
     {
         $this->actionLog->create([
             'user_id' => $request->user()->id,
-            'url'     => $request->url(),
-            'route'   => $request->route()->getName(),
-            'action'  => $request->method(),
+            'url' => $request->url(),
+            'route' => $request->route()->getName(),
+            'action' => $request->method(),
         ]);
 
         return $next($request);
