@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\ActionLogger\\ActionLoggerServiceProvider"
+                "LaravelEnso\\ActionLogger\\AppServiceProvider"
             ],
             "aliases": {}
         }

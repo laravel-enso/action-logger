@@ -5,7 +5,7 @@ namespace LaravelEnso\ActionLogger;
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger;
 
-class ActionLoggerServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
