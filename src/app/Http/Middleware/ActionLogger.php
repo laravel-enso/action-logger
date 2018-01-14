@@ -7,8 +7,6 @@ use LaravelEnso\ActionLogger\app\Models\ActionLog;
 
 class ActionLogger
 {
-    private $actionLog;
-
     public function handle($request, Closure $next)
     {
         ActionLog::create([
