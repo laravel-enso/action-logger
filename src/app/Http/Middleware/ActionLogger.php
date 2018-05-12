@@ -9,12 +9,7 @@ class ActionLogger
 {
     public function handle($request, Closure $next)
     {
-        ActionLog::create([
-            'user_id' => $request->user()->id,
-            'url' => $request->url(),
-            'route' => $request->route()->getName(),
-            'action' => $request->method(),
-        ]);
+        ActionLog::store($request);
 
         return $next($request);
     }
