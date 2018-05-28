@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/core": "2.7.*"
+        "laravel-enso/core": "2.8.*"
     },
     "require-dev": {
         "laravel-enso/testhelper": "1.4.*"
