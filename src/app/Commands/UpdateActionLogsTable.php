@@ -3,8 +3,8 @@
 namespace LaravelEnso\ActionLogger\app\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
 class UpdateActionLogsTable extends Command
 {
