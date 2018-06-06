@@ -14,7 +14,7 @@ class CreateActionLogsTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->string('url');
             $table->string('route')->index();
-            $table->string('action');
+            $table->string('method');
             $table->timestamps();
         });
     }

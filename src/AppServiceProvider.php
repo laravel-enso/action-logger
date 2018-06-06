@@ -4,6 +4,7 @@ namespace LaravelEnso\ActionLogger;
 
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\ActionLogger\app\Http\Middleware\ActionLogger;
+use LaravelEnso\ActionLogger\app\Commands\UpdateActionLogsTable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app['router']
             ->aliasMiddleware('action-logger', ActionLogger::class);
+
+        $this->commands([
+            UpdateActionLogsTable::class,
+        ]);
     }
 
     public function register()
