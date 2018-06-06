@@ -4,7 +4,7 @@ namespace LaravelEnso\ActionLogger\app\Traits;
 
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 
-trait ActionLogger
+trait HasActionLogs
 {
     public function actionLogs()
     {
