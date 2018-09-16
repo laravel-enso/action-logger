@@ -1,10 +1,10 @@
 <?php
 
-use App\User;
+use Tests\TestCase;
+use LaravelEnso\Core\app\Models\User;
+use LaravelEnso\TestHelper\app\Traits\SignIn;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
-use LaravelEnso\TestHelper\app\Traits\SignIn;
-use Tests\TestCase;
 
 class ActionLoggerTest extends TestCase
 {
