@@ -19,8 +19,9 @@ class ActionLoggerTest extends TestCase
 
         // $this->withoutExceptionHandling();
 
-        $this->seed()
-            ->actingAs($this->user = User::first());
+        $this->seed()->actingAs(
+            $this->user = User::first()
+        );
     }
 
     /** @test */
