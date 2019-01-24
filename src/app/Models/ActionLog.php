@@ -12,9 +12,7 @@ class ActionLog extends Model
 
     public function user()
     {
-        return $this->belongsTo(
-            config('auth.providers.users.model'), 'user_id'
-        );
+        return $this->belongsTo(User::class);
     }
 
     public function permission()
