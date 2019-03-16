@@ -17,7 +17,7 @@ User actions logger dependency for [Laravel](https://laravel.com).
 
 ### Configuration & Usage
 
-Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/packages/action-logger.html)
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/action-logger.html)
 
 ### Contributions
 
