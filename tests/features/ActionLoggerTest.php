@@ -32,7 +32,7 @@ class ActionLoggerTest extends TestCase
 
         $actionLog = ActionLog::latest()->first();
 
-        $this->assertEquals($actionLog->user_id, $this->user->id);
-        $this->assertEquals($actionLog->route, self::Route);
+        tap($this)->assertEquals($actionLog->user_id, $this->user->id)
+            ->assertEquals($actionLog->route, self::Route);
     }
 }
