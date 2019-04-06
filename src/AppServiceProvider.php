@@ -15,9 +15,4 @@ class AppServiceProvider extends ServiceProvider
             'action-logger', ActionLogger::class
         );
     }
-
-    public function register()
-    {
-        //
-    }
 }
