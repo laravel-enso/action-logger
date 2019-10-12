@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "4.4.*"
+        "laravel-enso/core": "4.5.*"
     },
     "autoload": {
         "psr-4": {
