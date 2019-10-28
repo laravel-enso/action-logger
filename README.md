@@ -13,18 +13,7 @@ The front end assets that utilize this api are present in the [ui](https://githu
 
 For live examples and demos, you may visit [laravel-enso.com](https://www.laravel-enso.com)
 
-## Installation
-
-Comes pre-installed in Enso.
-
-## Features
-
-- creates the `action-logger` middleware, the `action_logs` table and the `ActionLog` model
-- will log all access routes covered by the `action-logger` middleware
-- comes with the `ActionLogs` trait that defines the relationship to the `ActionLog` model, and should be included in your user model
-- each entry will record `user_id`, `url`, `route` name, http `method` verb and timestamps
-
-### Configuration & Usage
+### Installation, Configuration & Usage
 
 Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/action-logger.html)
 
