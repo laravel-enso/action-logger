@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\ActionLogger\app\Models;
 
-use LaravelEnso\Core\app\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Permissions\app\Models\Permission;
 
 class ActionLog extends Model
