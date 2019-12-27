@@ -11,7 +11,7 @@ class ActionLoggerTest extends TestCase
 
     private const Route = 'administration.users.show';
 
-    private $user;
+    private User $user;
 
     protected function setUp(): void
     {
