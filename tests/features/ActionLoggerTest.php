@@ -1,9 +1,9 @@
 <?php
 
 use Tests\TestCase;
-use LaravelEnso\Core\app\Models\User;
+use LaravelEnso\Core\App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelEnso\ActionLogger\app\Models\ActionLog;
+use LaravelEnso\ActionLogger\App\Models\ActionLog;
 
 class ActionLoggerTest extends TestCase
 {

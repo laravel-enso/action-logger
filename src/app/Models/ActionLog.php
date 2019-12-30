@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ActionLogger\app\Models;
+namespace LaravelEnso\ActionLogger\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\Core\app\Models\User;
-use LaravelEnso\Permissions\app\Models\Permission;
+use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Permissions\App\Models\Permission;
 
 class ActionLog extends Model
 {

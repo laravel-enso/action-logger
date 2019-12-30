@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\ActionLogger\app\Traits;
+namespace LaravelEnso\ActionLogger\App\Traits;
 
-use LaravelEnso\ActionLogger\app\Models\ActionLog;
+use LaravelEnso\ActionLogger\App\Models\ActionLog;
 
 trait ActionLogs
 {
