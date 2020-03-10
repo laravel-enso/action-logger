@@ -20,6 +20,8 @@ class CreateActionLogsTable extends Migration
             $table->string('method');
 
             $table->timestamps();
+
+            $table->index('created_at');
         });
     }
 
