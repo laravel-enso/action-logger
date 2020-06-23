@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\ActionLogger\App\Http\Middleware;
+namespace LaravelEnso\ActionLogger\Http\Middleware;
 
 use Closure;
-use LaravelEnso\ActionLogger\App\Models\ActionLog;
+use LaravelEnso\ActionLogger\Models\ActionLog;
 
 class ActionLogger
 {
