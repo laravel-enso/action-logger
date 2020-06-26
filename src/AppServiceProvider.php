@@ -4,8 +4,8 @@ namespace LaravelEnso\ActionLogger;
 
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\ActionLogger\Http\Middleware\ActionLogger;
-use LaravelEnso\ActionLogs\DynamicsRelations\ActionLogs;
-use LaravelEnso\Core\Http\Resources\User;
+use LaravelEnso\ActionLogger\DynamicsRelations\ActionLogs;
+use LaravelEnso\Core\Models\User;
 use LaravelEnso\DynamicMethods\Services\Methods;
 
 class AppServiceProvider extends ServiceProvider

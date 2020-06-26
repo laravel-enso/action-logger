@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\ActionLogs\DynamicsRelations;
+namespace LaravelEnso\ActionLogger\DynamicsRelations;
 
 use Closure;
 use LaravelEnso\ActionLogger\Models\ActionLog;
