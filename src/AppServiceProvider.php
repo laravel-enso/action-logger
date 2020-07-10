@@ -3,7 +3,7 @@
 namespace LaravelEnso\ActionLogger;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\ActionLogger\DynamicsRelations\ActionLogs;
+use LaravelEnso\ActionLogger\DynamicRelations\ActionLogs;
 use LaravelEnso\ActionLogger\Http\Middleware\ActionLogger;
 use LaravelEnso\Core\Models\User;
 use LaravelEnso\DynamicMethods\Services\Methods;
