@@ -9,14 +9,14 @@ class ActionLogger
 {
     public function handle($request, Closure $next)
     {
-        $actionLog = ActionLog::make([
-            'user_id' => $request->user()->id,
+        $attributes = [
             'url' => $request->url(),
+            'user_id' => $request->user()->id,
             'route' => $request->route()->getName(),
             'method' => $request->method(),
-        ]);
+        ];
 
-        dispatch(fn () => $actionLog->save())->afterResponse();
+        dispatch(fn () => ActionLog::create($attributes))->afterResponse();
 
         return $next($request);
     }
