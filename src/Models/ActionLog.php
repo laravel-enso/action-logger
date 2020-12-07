@@ -8,7 +8,7 @@ use LaravelEnso\Permissions\Models\Permission;
 
 class ActionLog extends Model
 {
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     public function user()
     {
