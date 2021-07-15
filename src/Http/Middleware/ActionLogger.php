@@ -12,7 +12,7 @@ class ActionLogger
         return $next($request);
     }
 
-    public function terminate($request, $response)
+    public function terminate($request)
     {
         ActionLog::create([
             'user_id' => $request->user()->id,
