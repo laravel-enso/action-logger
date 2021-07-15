@@ -9,15 +9,16 @@ class ActionLogger
 {
     public function handle($request, Closure $next)
     {
-        $actionLog = ActionLog::make([
+        return $next($request);
+    }
+
+    public function terminate($request, $response)
+    {
+        ActionLog::create([
             'user_id' => $request->user()->id,
             'url' => $request->url(),
             'route' => $request->route()->getName(),
             'method' => $request->method(),
         ]);
-
-        dispatch(fn () => $actionLog->save())->afterResponse();
-
-        return $next($request);
     }
 }
