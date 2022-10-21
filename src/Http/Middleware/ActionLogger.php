@@ -9,14 +9,16 @@ class ActionLogger
 {
     public function handle($request, Closure $next)
     {
-        $actionLog = ActionLog::make([
+        $log = ActionLog::make([
             'user_id' => $request->user()->id,
             'url' => $request->url(),
             'route' => $request->route()->getName(),
             'method' => $request->method(),
         ]);
 
-        dispatch(fn () => $actionLog->save())->afterResponse();
+        dispatch(fn () => $log->fill([
+            'duration' => min(999.999, microtime(true) - LARAVEL_START),
+        ])->save())->afterResponse();
 
         return $next($request);
     }
