@@ -11,9 +11,9 @@ class ActionLogger
     {
         $log = ActionLog::make([
             'user_id' => $request->user()->id,
-            'url' => $request->url(),
-            'route' => $request->route()->getName(),
-            'method' => $request->method(),
+            'url'     => $request->url(),
+            'route'   => $request->route()->getName(),
+            'method'  => $request->method(),
         ]);
 
         dispatch(fn () => $log->fill([
