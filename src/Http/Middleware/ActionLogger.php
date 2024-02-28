@@ -3,23 +3,30 @@
 namespace LaravelEnso\ActionLogger\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use LaravelEnso\ActionLogger\Models\ActionLog;
+use Symfony\Component\HttpFoundation\Response;
 
 class ActionLogger
 {
-    public function handle($request, Closure $next)
+    private ActionLog $log;
+
+    public function handle(Request $request, Closure $next): Response
     {
-        $log = ActionLog::make([
+        $this->log = ActionLog::make([
             'user_id' => $request->user()->id,
             'url' => $request->url(),
             'route' => $request->route()->getName(),
             'method' => $request->method(),
         ]);
 
-        dispatch(fn () => $log->fill([
-            'duration' => min(999.999, microtime(true) - LARAVEL_START),
-        ])->save())->afterResponse();
-
         return $next($request);
+    }
+
+    public function terminate(Request $request, Response $response): void
+    {
+        $this->log->fill([
+            'duration' => min(999.999, microtime(true) - LARAVEL_START),
+        ])->save();
     }
 }

@@ -7,11 +7,15 @@ use LaravelEnso\ActionLogger\Http\Middleware\ActionLogger;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->app['router']->aliasMiddleware('action-logger', ActionLogger::class);
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
 
+    public function register(): void
+    {
+        $this->app->singleton(ActionLogger::class);
     }
 }
