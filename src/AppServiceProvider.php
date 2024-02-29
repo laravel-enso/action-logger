@@ -11,11 +11,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app['router']->aliasMiddleware('action-logger', ActionLogger::class);
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-    }
-
-    public function register(): void
-    {
-        $this->app->singleton(ActionLogger::class);
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }

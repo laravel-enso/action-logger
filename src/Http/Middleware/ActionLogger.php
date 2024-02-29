@@ -9,24 +9,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ActionLogger
 {
-    private ActionLog $log;
-
     public function handle(Request $request, Closure $next): Response
     {
-        $this->log = ActionLog::make([
-            'user_id' => $request->user()->id,
-            'url' => $request->url(),
-            'route' => $request->route()->getName(),
-            'method' => $request->method(),
-        ]);
-
         return $next($request);
     }
 
     public function terminate(Request $request, Response $response): void
     {
-        $this->log->fill([
+        ActionLog::create([
+            'user_id' => $request->user()->id,
+            'url' => $request->url(),
+            'route' => $request->route()->getName(),
+            'method' => $request->method(),
             'duration' => min(999.999, microtime(true) - LARAVEL_START),
-        ])->save();
+        ]);
     }
 }
