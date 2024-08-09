@@ -33,7 +33,7 @@
             "providers": [
                 "LaravelEnso\\ActionLogger\\AppServiceProvider"
             ],
-            "aliases": {}
+            "aliases": []
         }
     }
 }
