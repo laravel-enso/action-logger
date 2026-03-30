@@ -4,6 +4,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\ActionLogger\Models\ActionLog;
 use LaravelEnso\Users\Models\User;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ActionLoggerTest extends TestCase
 {
@@ -22,7 +23,7 @@ class ActionLoggerTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function logs_action()
     {
         $this->get(route(self::Route, $this->user->id, false))
