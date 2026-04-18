@@ -107,10 +107,10 @@ Because it relies on the resolved route name, routes without meaningful names pr
 
 Required Enso packages:
 
-- `laravel-enso/core`
-- `laravel-enso/dynamic-methods`
-- `laravel-enso/permissions`
-- `laravel-enso/users`
+- [`laravel-enso/core`](https://docs.laravel-enso.com/backend/core.html) [↗](https://github.com/laravel-enso/core)
+- [`laravel-enso/dynamic-methods`](https://docs.laravel-enso.com/backend/dynamic-methods.html) [↗](https://github.com/laravel-enso/dynamic-methods)
+- [`laravel-enso/permissions`](https://docs.laravel-enso.com/backend/permissions.html) [↗](https://github.com/laravel-enso/permissions)
+- [`laravel-enso/users`](https://docs.laravel-enso.com/backend/users.html) [↗](https://github.com/laravel-enso/users)
 
 Framework dependency:
 
