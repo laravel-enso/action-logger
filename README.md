@@ -1,26 +1,123 @@
 # Action Logger
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2d3169454da144cdb8fb4a15b0a1e294)](https://www.codacy.com/gh/laravel-enso/action-logger?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/action-logger&amp;utm_campaign=Badge_Grade) 
-[![StyleCI](https://github.styleci.io/repos/85554059/shield?branch=master)](https://github.styleci.io/repos/85554059)
-[![License](https://poser.pugx.org/laravel-enso/action-logger/license)](https://packagist.org/packages/laravel-enso/action-logger)
-[![Total Downloads](https://poser.pugx.org/laravel-enso/action-logger/downloads)](https://packagist.org/packages/laravel-enso/action-logger)
-[![Latest Stable Version](https://poser.pugx.org/laravel-enso/action-logger/version)](https://packagist.org/packages/laravel-enso/action-logger)
 
-User actions logger dependency for [Laravel](https://laravel.com).
+[![License](https://poser.pugx.org/laravel-enso/action-logger/license)](LICENSE)
+[![Stable](https://poser.pugx.org/laravel-enso/action-logger/version)](https://packagist.org/packages/laravel-enso/action-logger)
+[![Downloads](https://poser.pugx.org/laravel-enso/action-logger/downloads)](https://packagist.org/packages/laravel-enso/action-logger)
+[![PHP](https://img.shields.io/badge/php-8.2%2B-777bb4.svg)](composer.json)
+[![Issues](https://img.shields.io/github/issues/laravel-enso/action-logger.svg)](https://github.com/laravel-enso/action-logger/issues)
 
-This package works exclusively within the [Enso](https://github.com/laravel-enso/Enso) ecosystem.
+## Description
 
-The front end assets that utilize this api are present in the [ui](https://github.com/enso-ui/ui) package.
+Action Logger records authenticated user activity for routes that opt into Enso's `action-logger` middleware.
 
-For live examples and demos, you may visit [laravel-enso.com](https://www.laravel-enso.com)
+It is a small backend package focused on request auditing at the application edge. It captures which authenticated user accessed which named route, by which HTTP method, at what URL, and how long the request took to complete.
 
-### Installation, Configuration & Usage
+The package is designed to work inside the Laravel Enso ecosystem and integrates with Enso users, permissions, and dynamic relationships.
 
-Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/action-logger.html)
+## Installation
 
-### Contributions
+This package comes pre-installed in Laravel Enso distributions that require activity tracking.
+
+For standalone package installation inside an Enso-based application:
+
+```bash
+composer require laravel-enso/action-logger
+```
+
+The package auto-registers its service provider, loads its migrations, and registers the `action-logger` middleware alias.
+
+Run the migrations after installation:
+
+```bash
+php artisan migrate
+```
+
+## Features
+
+- Registers the `action-logger` route middleware alias.
+- Creates and maintains the `action_logs` table through package migrations.
+- Persists one log entry per authenticated request handled by the middleware.
+- Stores `user_id`, `url`, `route`, `method`, `duration`, and timestamps for each action.
+- Adds a dynamic `actionLogs()` relationship to the Enso `User` model.
+- Exposes an `ActionLog` model with `user()` and `permission()` relationships.
+- Links logged route names back to Enso permissions through the `permission()` relation.
+
+## Usage
+
+Apply the middleware to the routes you want to track:
+
+```php
+Route::middleware(['web', 'auth', 'action-logger'])
+    ->group(function (): void {
+        Route::get('/administration/users/{user}', UserController::class)
+            ->name('administration.users.show');
+    });
+```
+
+Once the middleware is active, every authenticated request matched by those routes will create a new action log entry when the request terminates.
+
+The package also adds an `actionLogs()` relationship to the Enso user model, so user activity can be queried directly:
+
+```php
+$logs = $user->actionLogs()
+    ->latest()
+    ->get();
+```
+
+## API
+
+### Middleware
+
+- Alias: `action-logger`
+- Class: `LaravelEnso\ActionLogger\Http\Middleware\ActionLogger`
+- Behavior: creates the log entry in `terminate()`, after the response is sent
+
+### Model
+
+`LaravelEnso\ActionLogger\Models\ActionLog`
+
+Stored attributes:
+
+- `user_id`
+- `url`
+- `route`
+- `method`
+- `duration`
+- `created_at`
+- `updated_at`
+
+Relationships:
+
+- `user()`
+  Belongs to `LaravelEnso\Users\Models\User`
+- `permission()`
+  Belongs to `LaravelEnso\Permissions\Models\Permission` using `route -> name`
+
+### Dynamic User Relation
+
+The package binds an `actionLogs()` relation to `LaravelEnso\Users\Models\User` through the Enso dynamic-methods package.
+
+::: warning Note
+This package only logs actions for authenticated requests. If no authenticated user is available, no action log entry is created.
+
+Because it relies on the resolved route name, routes without meaningful names provide less useful audit data.
+:::
+
+## Depends On
+
+Required Enso packages:
+
+- `laravel-enso/core`
+- `laravel-enso/dynamic-methods`
+- `laravel-enso/permissions`
+- `laravel-enso/users`
+
+Framework dependency:
+
+- Laravel 12 compatible application stack
+
+## Contributions
 
 are welcome. Pull requests are great, but issues are good too.
 
-### License
-
-This package is released under the MIT license.
+Thank you to all the people who already contributed to Enso!
