@@ -17,15 +17,15 @@ class ActionLogger
 
     public function terminate(Request $request, Response $response): void
     {
-        if (! Auth::check()) {
+        if (!Auth::check()) {
             return;
         }
 
         ActionLog::create([
-            'user_id' => $request->user()->id,
-            'url' => $request->url(),
-            'route' => $request->route()->getName(),
-            'method' => $request->method(),
+            'user_id'  => $request->user()->id,
+            'url'      => $request->url(),
+            'route'    => $request->route()->getName(),
+            'method'   => $request->method(),
             'duration' => min(999.999, microtime(true) - LARAVEL_START),
         ]);
     }
