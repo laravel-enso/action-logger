@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
+use LaravelEnso\ActionLogger\Enums\Methods;
 use LaravelEnso\ActionLogger\Models\ActionLog;
 use LaravelEnso\Permissions\Models\Permission;
 use LaravelEnso\Users\Models\User;
@@ -37,10 +39,29 @@ class ActionLoggerTest extends TestCase
         $this->assertEquals($this->user->id, $actionLog->user_id);
         $this->assertEquals(self::Route, $actionLog->route);
         $this->assertEquals(route(self::Route, $this->user->id, false), parse_url($actionLog->url, PHP_URL_PATH));
-        $this->assertEquals('GET', $actionLog->method);
+        $this->assertSame(Methods::Get, $actionLog->method);
+        $this->assertSame(Methods::Get->value, $actionLog->getRawOriginal('method'));
         $this->assertNotNull($actionLog->duration);
         $this->assertGreaterThanOrEqual(0, (float) $actionLog->duration);
         $this->assertLessThanOrEqual(999.999, (float) $actionLog->duration);
+    }
+
+    #[Test]
+    public function maps_request_methods_to_enum_cases()
+    {
+        $methods = [
+            'GET' => Methods::Get,
+            'POST' => Methods::Post,
+            'PUT' => Methods::Put,
+            'PATCH' => Methods::Patch,
+            'DELETE' => Methods::Delete,
+            'OPTIONS' => Methods::Options,
+            'HEAD' => Methods::Head,
+        ];
+
+        foreach ($methods as $method => $enum) {
+            $this->assertSame($enum, Methods::fromRequest(Request::create('/', $method)));
+        }
     }
 
     #[Test]
@@ -79,5 +100,31 @@ class ActionLoggerTest extends TestCase
         $this->assertNotNull($actionLog);
         $this->assertTrue($this->user->actionLogs->contains($actionLog));
         $this->assertTrue($this->user->actionLogs()->whereKey($actionLog->id)->exists());
+    }
+
+    #[Test]
+    public function exposes_action_logs_table_endpoints()
+    {
+        ActionLog::create([
+            'user_id' => $this->user->id,
+            'url' => 'http://localhost/administration/users/'.$this->user->id,
+            'route' => self::Route,
+            'method' => Methods::Get,
+            'duration' => 0.125,
+        ]);
+
+        $this->actingAs($this->user)
+            ->get(route('system.actionLogs.initTable', [], false))
+            ->assertStatus(200);
+
+        $params = [
+            'columns' => [],
+            'meta' => '{"start":0,"length":10,"sort":false,"search":"","forceInfo":false,"searchMode":"full"}',
+        ];
+
+        $this->actingAs($this->user)
+            ->get(route('system.actionLogs.tableData', $params, false))
+            ->assertStatus(200)
+            ->assertJsonFragment(['route' => self::Route]);
     }
 }

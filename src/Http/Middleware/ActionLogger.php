@@ -5,6 +5,7 @@ namespace LaravelEnso\ActionLogger\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use LaravelEnso\ActionLogger\Enums\Methods;
 use LaravelEnso\ActionLogger\Models\ActionLog;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +26,7 @@ class ActionLogger
             'user_id'  => $request->user()->id,
             'url'      => $request->url(),
             'route'    => $request->route()->getName(),
-            'method'   => $request->method(),
+            'method'   => Methods::fromRequest($request),
             'duration' => min(999.999, microtime(true) - LARAVEL_START),
         ]);
     }

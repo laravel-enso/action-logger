@@ -1,0 +1,76 @@
+{
+    "name": "Action Logs",
+    "routePrefix": "system.actionLogs",
+    "crtNo": true,
+    "buttons": [
+        "excel"
+    ],
+    "columns": [
+        {
+            "label": "User",
+            "name": "user",
+            "data": "user",
+            "resource": "LaravelEnso\\Users\\Http\\Resources\\User",
+            "meta": [
+                "slot",
+                "notExportable"
+            ]
+        },
+        {
+            "label": "Method",
+            "name": "method",
+            "data": "action_logs.method",
+            "enum": "LaravelEnso\\ActionLogger\\Enums\\Methods",
+            "meta": [
+                "slot",
+                "sortable"
+            ]
+        },
+        {
+            "label": "Permission",
+            "name": "permission",
+            "data": "permission",
+            "resource": "LaravelEnso\\Permissions\\Http\\Resources\\Permission",
+            "meta": [
+                "slot",
+                "notExportable"
+            ]
+        },
+        {
+            "label": "Route",
+            "name": "route",
+            "data": "action_logs.route",
+            "meta": [
+                "searchable",
+                "sortable"
+            ]
+        },
+        {
+            "label": "URL",
+            "name": "url",
+            "data": "action_logs.url",
+            "meta": [
+                "searchable",
+                "sortable"
+            ]
+        },
+        {
+            "label": "Duration",
+            "name": "duration",
+            "data": "action_logs.duration",
+            "meta": [
+                "number",
+                "sortable"
+            ]
+        },
+        {
+            "label": "Created at",
+            "name": "created_at",
+            "data": "action_logs.created_at",
+            "meta": [
+                "date",
+                "sortable"
+            ]
+        }
+    ]
+}

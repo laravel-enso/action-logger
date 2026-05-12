@@ -16,13 +16,15 @@ return new class() extends Migration {
 
             $table->string('url');
             $table->string('route')->index();
-            $table->string('method');
+            $table->unsignedTinyInteger('method')->index();
 
             $table->decimal('duration', 6, 3)->unsigned()->nullable()->index();
 
             $table->timestamps();
 
             $table->index('created_at');
+            $table->index(['user_id', 'created_at']);
+            $table->index(['method', 'created_at']);
         });
     }
 
