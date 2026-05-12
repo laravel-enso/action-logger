@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use LaravelEnso\ActionLogger\Enums\Methods;
 use LaravelEnso\ActionLogger\Models\ActionLog;
 use LaravelEnso\Permissions\Models\Permission;
+use LaravelEnso\Tables\Traits\Tests\Datatable;
 use LaravelEnso\Users\Models\User;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -12,8 +13,13 @@ use Tests\TestCase;
 class ActionLoggerTest extends TestCase
 {
     use RefreshDatabase;
+    use Datatable {
+        can_view_index as private canViewActionLogsTable;
+    }
 
     private const Route = 'administration.users.show';
+
+    private string $permissionGroup = 'system.actionLogs';
 
     private User $user;
 
@@ -103,7 +109,7 @@ class ActionLoggerTest extends TestCase
     }
 
     #[Test]
-    public function exposes_action_logs_table_endpoints()
+    public function can_view_index()
     {
         ActionLog::create([
             'user_id' => $this->user->id,
@@ -113,18 +119,8 @@ class ActionLoggerTest extends TestCase
             'duration' => 0.125,
         ]);
 
-        $this->actingAs($this->user)
-            ->get(route('system.actionLogs.initTable', [], false))
-            ->assertStatus(200);
+        $this->actingAs($this->user);
 
-        $params = [
-            'columns' => [],
-            'meta' => '{"start":0,"length":10,"sort":false,"search":"","forceInfo":false,"searchMode":"full"}',
-        ];
-
-        $this->actingAs($this->user)
-            ->get(route('system.actionLogs.tableData', $params, false))
-            ->assertStatus(200)
-            ->assertJsonFragment(['route' => self::Route]);
+        $this->canViewActionLogsTable();
     }
 }
