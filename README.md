@@ -43,7 +43,10 @@ php artisan migrate
 - Adds a dynamic `actionLogs()` relationship to the Enso `User` model.
 - Exposes an `ActionLog` model with `user()` and `permission()` relationships.
 - Links logged route names back to Enso permissions through the `permission()` relation.
-- Provides the `System > Action Logs` table structure, with user, method, permission, URL, duration and creation date columns.
+- Provides the `System > Action Logs` table structure, with user, method, permission, URL, duration and creation datetime columns.
+- Sorts the action logs table by newest entries first.
+- Formats request duration as a numeric column with three decimal places.
+- Keeps permissions as the route-facing table surface while the raw route value remains an internal storage detail.
 
 ## Usage
 
@@ -136,6 +139,8 @@ Available endpoints:
 - `system.actionLogs.exportExcel`
 
 The companion frontend package is `@enso-ui/action-logger`.
+
+The table defaults to `action_logs.created_at desc`, exposes `created_at` as a `datetime` column, and displays the resolved permission instead of a separate raw route column.
 
 ::: warning Note
 This package only logs actions for authenticated requests. If no authenticated user is available, no action log entry is created.

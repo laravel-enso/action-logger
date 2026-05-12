@@ -2,6 +2,8 @@
     "name": "Action Logs",
     "routePrefix": "system.actionLogs",
     "crtNo": true,
+    "defaultSort": "action_logs.created_at",
+    "defaultSortDirection": "desc",
     "buttons": [
         "excel"
     ],
@@ -37,15 +39,6 @@
             ]
         },
         {
-            "label": "Route",
-            "name": "route",
-            "data": "action_logs.route",
-            "meta": [
-                "searchable",
-                "sortable"
-            ]
-        },
-        {
             "label": "URL",
             "name": "url",
             "data": "action_logs.url",
@@ -58,8 +51,10 @@
             "label": "Duration",
             "name": "duration",
             "data": "action_logs.duration",
+            "number": {
+                "precision": 3
+            },
             "meta": [
-                "number",
                 "sortable"
             ]
         },
@@ -68,7 +63,7 @@
             "name": "created_at",
             "data": "action_logs.created_at",
             "meta": [
-                "date",
+                "datetime",
                 "sortable"
             ]
         }

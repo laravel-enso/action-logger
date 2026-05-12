@@ -18,7 +18,7 @@ class ActionLogger
 
     public function terminate(Request $request, Response $response): void
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return;
         }
 
