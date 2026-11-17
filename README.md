@@ -35,6 +35,7 @@ php artisan migrate
 
 ## Features
 
+- Filters table rows by the actor's current role through `params.roleId`; omitting or clearing it includes all roles.
 - Registers the `action-logger` route middleware alias.
 - Creates and maintains the `action_logs` table through package migrations.
 - Persists one log entry per authenticated request handled by the middleware.
